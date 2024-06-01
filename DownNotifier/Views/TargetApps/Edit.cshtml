@@ -1,0 +1,57 @@
+﻿@model DownNotifier.Models.TargetApp
+
+@{
+    ViewData["Title"] = "Edit Target App";
+}
+
+<h1>Edit Target App</h1>
+
+<h4>TargetApp</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div class="form-group">
+                <input asp-for="Id" type="hidden" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Interval" class="control-label"></label>
+                <input asp-for="Interval" class="form-control" type="time" step="1" />
+                <span asp-validation-for="Interval" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastChecked" class="control-label"></label>
+                <input asp-for="LastChecked" class="form-control" type="datetime-local" disabled="disabled" />
+                <span asp-validation-for="LastChecked" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input asp-for="IsUp" class="form-check-input" type="checkbox" disabled="disabled" />
+                <label asp-for="IsUp" class="form-check-label"></label>
+                <span asp-validation-for="IsUp" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="margin-top:10px">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

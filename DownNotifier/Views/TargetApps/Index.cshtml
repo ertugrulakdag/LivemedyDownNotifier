@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DownNotifier.Models.TargetApp>
+
+@{
+    ViewData["Title"] = "Target Apps";
+}
+
+<h1>Target Apps</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>URL</th>
+            <th>Interval</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Url)</td>
+                <td>@Html.DisplayFor(modelItem => item.Interval)</td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-danger"  asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Bu öğeyi silmek istediğinizden emin misiniz?')">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
