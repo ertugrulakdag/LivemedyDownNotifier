@@ -5,4 +5,6 @@
 
 ![image](https://github.com/ertugrulakdag/LivemedyDownNotifier/assets/11241955/fa01e90d-37f3-4e54-8007-783048665a47)
 
+![image](https://github.com/ertugrulakdag/LivemedyDownNotifier/assets/11241955/3e115b5e-8de0-4627-b9ab-be9f06f82283)
+
 ![image](https://github.com/ertugrulakdag/LivemedyDownNotifier/assets/11241955/83c1ef77-9a0c-4b2e-9808-2bd046ef2ca8)
