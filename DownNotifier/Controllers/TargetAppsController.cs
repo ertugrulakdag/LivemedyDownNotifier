@@ -1,4 +1,5 @@
-﻿using DownNotifier.Data;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using DownNotifier.Data;
 using DownNotifier.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +11,12 @@ namespace DownNotifier.Controllers
     public class TargetAppsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly INotyfService _notyf;
 
-        public TargetAppsController(ApplicationDbContext context)
+        public TargetAppsController(ApplicationDbContext context, INotyfService notyf)
         {
             _context = context;
+            _notyf = notyf;
         }
 
         public async Task<IActionResult> Index()
@@ -36,6 +39,7 @@ namespace DownNotifier.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            _notyf.Success("Success Create");
             return View(targetApp);
         }
 
@@ -83,6 +87,7 @@ namespace DownNotifier.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            _notyf.Success("Success Update");
             return View(targetApp);
         }
 
@@ -96,6 +101,7 @@ namespace DownNotifier.Controllers
             var targetApp = await _context.TargetApps .FirstOrDefaultAsync(m => m.Id == id);
             if (targetApp == null)
             {
+                _notyf.Error("Error Delete");
                 return NotFound();
             }
             else
@@ -104,6 +110,7 @@ namespace DownNotifier.Controllers
                 _context.RemoveRange(notifications);
                 _context.Remove(targetApp);
                 await _context.SaveChangesAsync();
+                _notyf.Success("Success Delete");
                 return RedirectToAction(nameof(Index));
             }
 
